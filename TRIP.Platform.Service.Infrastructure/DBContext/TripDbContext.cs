@@ -8,5 +8,6 @@ namespace TRIP.Platform.Service.Infrastructure.DBContext
 		public TripDbContext(DbContextOptions<TripDbContext> options) : base(options) { }
 		public DbSet<User> User { get; set; }
 		public DbSet<Vehicle> Vehicle { get; set; }
+		public DbSet<Driver> Driver { get; set; }
 	}
 }

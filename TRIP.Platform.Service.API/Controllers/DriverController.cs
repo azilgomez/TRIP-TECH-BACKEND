@@ -54,7 +54,7 @@ namespace TRIP.Platform.Service.API.Controllers
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
 		[HttpPost]
-		[Route("SaveVehicle")]
+		[Route("SaveDriver")]
 		[ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
 		public async Task<IActionResult> SaveDriver(DriverRequest driverDetail, CancellationToken cancellationToken)
 		{

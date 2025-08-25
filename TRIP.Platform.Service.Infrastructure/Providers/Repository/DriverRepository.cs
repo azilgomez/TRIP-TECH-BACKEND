@@ -35,14 +35,20 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 				SqlDbType = SqlDbType.Int,
 				Direction = ParameterDirection.Input
 			};
+			var strParamType = StoredProcedureConstants.Driver_DriverType_Parameter;
+			SqlParameter parameterType = new SqlParameter(strParamType, driver.DriverType)
+			{
+				SqlDbType = SqlDbType.NVarChar,
+				Direction = ParameterDirection.Input
+			};
 			var strParamName = StoredProcedureConstants.Driver_DriverName_Parameter;
 			SqlParameter parameterName = new SqlParameter(strParamName, driver.DriverName)
 			{
 				SqlDbType = SqlDbType.NVarChar,
 				Direction = ParameterDirection.Input
 			};
-			var strParamType = StoredProcedureConstants.Driver_DriverType_Parameter;
-			SqlParameter parameterType = new SqlParameter(strParamType, driver.DriverType)
+			var strParamLanguage = StoredProcedureConstants.Driver_Language_Parameter;
+			SqlParameter parameterLanguage = new SqlParameter(strParamLanguage, driver.Language)
 			{
 				SqlDbType = SqlDbType.NVarChar,
 				Direction = ParameterDirection.Input
@@ -75,23 +81,24 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 			var strParamStatus = StoredProcedureConstants.Driver_Status_Parameter;
 			SqlParameter parameterStatus = new SqlParameter(strParamStatus, driver.Status)
 			{
-				SqlDbType = SqlDbType.NVarChar,
+				SqlDbType = SqlDbType.Bit,
 				Direction = ParameterDirection.Input
 			};
 			var strloggedUser = StoredProcedureConstants.User_LoggedUser_Parameter;
 			SqlParameter parameterLoggedUser = new SqlParameter(StoredProcedureConstants.User_LoggedUser_Parameter, loggedUser);
 
 			paramList.Add(parameterDriverId);
-			paramList.Add(parameterName);
 			paramList.Add(parameterType);
+			paramList.Add(parameterName);
+			paramList.Add(parameterLanguage);
 			paramList.Add(parameterLocation);
 			paramList.Add(parameterExperience);
 			paramList.Add(parameterLicense);
 			paramList.Add(parameterContactNumber);
 			paramList.Add(parameterStatus);
 			paramList.Add(parameterLoggedUser);
-			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.Driver_Insert_Driver, string.Join(",", strParamDriverId, strParamName,
-				strParamType, strParamLocation, strParamExperience, strParamLicense, strParamContactNumber, strParamStatus, strloggedUser), paramList, cancellationToken);
+			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.Driver_Insert_Driver, string.Join(",", strParamDriverId, strParamType, strParamName,
+				strParamLanguage, strParamLocation, strParamExperience, strParamLicense, strParamContactNumber, strParamStatus, strloggedUser), paramList, cancellationToken);
 		}
 
 		/// <summary>
