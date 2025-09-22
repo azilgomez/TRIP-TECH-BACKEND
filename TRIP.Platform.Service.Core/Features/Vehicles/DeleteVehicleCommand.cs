@@ -1,11 +1,8 @@
 ﻿using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 using TRIP.Platform.Service.Core.Interfaces.Services;
-using TRIP.Platform.Service.Core.Models.Request;
 using TRIP.Platform.Service.Core.Models.Response;
 
 namespace TRIP.Platform.Service.Core.Features.Vehicles
