@@ -13,13 +13,13 @@ using TRIP.Platform.Service.Core.Models.Response;
 
 namespace TRIP.Platform.Service.Core.Services
 {
-	public class VehicleService : IVehicleService
+	public class TripService : ITripService
 	{
 		private ICommonUnitofWork _commonUnitofWork;
 		private IConfiguration _configuration;
-		private ILogger<VehicleService> _logger;
+		private ILogger<TripService> _logger;
 		private readonly IMapper _mapper;
-		public VehicleService(ICommonUnitofWork commonUnitofWork, IMapper mapper, IConfiguration configuration, ILogger<VehicleService> logger)
+		public TripService(ICommonUnitofWork commonUnitofWork, IMapper mapper, IConfiguration configuration, ILogger<TripService> logger)
 		{
 			this._commonUnitofWork = commonUnitofWork ?? throw new ArgumentNullException(nameof(commonUnitofWork));
 			this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -34,10 +34,10 @@ namespace TRIP.Platform.Service.Core.Services
 		/// <param name="loggedUser"></param>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public async Task<Response<bool>> SaveVehicle(VehicleRequest vehicle, string loggedUser, CancellationToken cancellationToken)
+		public async Task<Response<bool>> SaveTrip(TripRequest trip, string loggedUser, CancellationToken cancellationToken)
 		{
-			var addedVehicle = this._mapper.Map<VehicleRequest, Vehicle>(vehicle);
-			var result = await _commonUnitofWork.VehicleRepository.SaveVehicle(addedVehicle, loggedUser, cancellationToken);
+			var addedTrip = this._mapper.Map<TripRequest, Trip>(trip);
+			var result = await _commonUnitofWork.TripRepository.SaveTrip(addedTrip, loggedUser, cancellationToken);
 			Response<bool> validation = new Response<bool>
 			{
 				IsSuccess = result
@@ -46,15 +46,15 @@ namespace TRIP.Platform.Service.Core.Services
 		}
 
 		/// <summary>
-		/// Method to delete vehicle
+		/// Method to delete Trip
 		/// </summary>
-		/// <param name="vehicleId"></param>
+		/// <param name="tripId"></param>
 		/// <param name="loggedUser"></param>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public async Task<Response<bool>> DeleteVehicle(int vehicleId, string loggedUser, CancellationToken cancellationToken)
+		public async Task<Response<bool>> DeleteTrip(int tripId, string loggedUser, CancellationToken cancellationToken)
 		{
-			var result = await _commonUnitofWork.VehicleRepository.DeleteVehicle(vehicleId, loggedUser, cancellationToken);
+			var result = await _commonUnitofWork.TripRepository.DeleteTrip(tripId, loggedUser, cancellationToken);
 			Response<bool> validation = new Response<bool>
 			{
 				IsSuccess = result
@@ -63,15 +63,15 @@ namespace TRIP.Platform.Service.Core.Services
 		}
 
 		/// <summary>
-		/// Method to get all vehicles
+		/// Method to get all trips
 		/// </summary>
 		/// <param name="loggedUser"></param>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public async Task<IEnumerable<VehicleResponse>> GetVehicles(string loggedUser, CancellationToken cancellationToken)
+		public async Task<IEnumerable<TripResponse>> GetTrips(string loggedUser, CancellationToken cancellationToken)
 		{
-			var vehicles = await this._commonUnitofWork.VehicleRepository.GetVehicles(loggedUser, cancellationToken);
-			var result = this._mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleResponse>>(vehicles);
+			var trips = await this._commonUnitofWork.TripRepository.GetTrips(loggedUser, cancellationToken);
+			var result = this._mapper.Map<IEnumerable<Trip>, IEnumerable<TripResponse>>(trips);
 			return result;
 		}
 
@@ -82,10 +82,10 @@ namespace TRIP.Platform.Service.Core.Services
 		/// <param name="loggedUser"></param>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public async Task<VehicleResponse> GetVehicleById(int vehicleId, string loggedUser, CancellationToken cancellationToken)
+		public async Task<TripResponse> GetTripById(int tripId, string loggedUser, CancellationToken cancellationToken)
 		{
-			var vehicle = await this._commonUnitofWork.VehicleRepository.GetVehicleById(vehicleId, loggedUser, cancellationToken);
-			var result = this._mapper.Map<Vehicle, VehicleResponse>(vehicle);
+			var trip = await this._commonUnitofWork.TripRepository.GetTripById(tripId, loggedUser, cancellationToken);
+			var result = this._mapper.Map<Trip, TripResponse>(trip);
 			return result;
 		}
 	}

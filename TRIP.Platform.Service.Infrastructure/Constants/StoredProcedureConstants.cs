@@ -6,10 +6,13 @@
 		public const string Users_GetLoggedInUser = "usp_GetLoggedInUserDetails";
 		public const string User_Insert_User = "usp_InsertUpdateUser";
 		public const string User_UserId_Parameter = "@UserId";
+		public const string User_CompanyName_Parameter = "@CompanyName";
+		public const string User_Website_Parameter = "@Website";
 		public const string User_Name_Parameter = "@Name";
 		public const string User_Email_Parameter = "@Email";
 		public const string User_Password_Parameter = "@Password";
 		public const string User_ContactNumber_Parameter = "@ContactNumber";
+		public const string User_Address_Parameter = "@Address";
 		public const string User_UserTypeId_Parameter = "@UserTypeId";
 		public const string User_LoggedUser_Parameter = "@LoggedUser";
 
@@ -42,6 +45,24 @@
 		public const string Drivers_Get = "usp_GetDriverById";
 		public const string Drivers_GetAll = "usp_GetDrivers";
 		public const string Driver_Delete_Driver = "usp_DeleteDriver";
+		#endregion
+
+		#region Trip
+		public const string Trip_TripId_Parameter = "@TripId";
+		public const string Trip_TripOwner_Parameter = "@TripOwner";
+		public const string Trip_TripType_Parameter = "@TripType";
+		public const string Trip_TripDate_Parameter = "@TripDate";
+		public const string Trip_StartPlace_Parameter = "@StartPlace";
+		public const string Trip_EndPlace_Parameter = "@EndPlace";
+		public const string Trip_StartDate_Parameter = "@StartDate";
+		public const string Trip_Remarks_Parameter = "@TripRemarks";
+		public const string Trip_Status_Parameter = "@Status";
+		public const string Trip_AssignTo_Parameter = "@AssignTo";
+		public const string Trip_InCharge_Parameter = "@InChargePerson";
+		public const string Trip_Insert_Trip= "usp_InsertUpdateTrip";
+		public const string Trips_Get = "usp_GetTripById";
+		public const string Trips_GetAll = "usp_GetTrips";
+		public const string Trip_Delete_Trip = "usp_DeleteTrip";
 		#endregion
 	}
 }
