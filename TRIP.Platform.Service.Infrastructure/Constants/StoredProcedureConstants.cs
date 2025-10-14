@@ -17,6 +17,8 @@
 		public const string Vehicle_VehicleId_Parameter = "@VehicleId";
 		public const string Vehicle_VehicleName_Parameter = "@VehicleName";
 		public const string Vehicle_VehicleType_Parameter = "@VehicleType";
+		public const string Vehicle_VehicleClass_Parameter = "@VehicleClass";
+		public const string Vehicle_VehicleSeating_Parameter = "@VehicleSeating";
 		public const string Vehicle_VehicleOwner_Parameter = "@VehicleOwner";
 		public const string Vehicle_VehicleYear_Parameter = "@VehicleYear";
 		public const string Vehicle_Capacity_Parameter = "@Capacity";
@@ -42,6 +44,15 @@
 		public const string Drivers_Get = "usp_GetDriverById";
 		public const string Drivers_GetAll = "usp_GetDrivers";
 		public const string Driver_Delete_Driver = "usp_DeleteDriver";
+		#endregion
+		#region Trip
+		public const string Trip_SP_TripAdd_AllParam = "@Trip,@TripVehicle,@LoggedUser";
+        public const string Trip_Insert_Trip = "usp_InsertUpdateTrip";
+		public const string Trip_SP_Save_Param = "@Trip";
+		public const string Trip_SP_Save_Table_Type = "TripTableType";
+		public const string TripVehicle_SP_Save_Param = "@TripVehicle";
+		public const string Trip_SP_Save_VehicleTable_Type = "TripVehicleTableType";
+		public const string StoredProcedure_Parameter_Mode_In = "in";
 		#endregion
 	}
 }

@@ -41,8 +41,14 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 				SqlDbType = SqlDbType.NVarChar,
 				Direction = ParameterDirection.Input
 			};
-			var strParamType = StoredProcedureConstants.Vehicle_VehicleType_Parameter;
-			SqlParameter parameterType = new SqlParameter(strParamType, vehicle.VehicleType)
+			var strParamVehicleClass = StoredProcedureConstants.Vehicle_VehicleClass_Parameter;
+			SqlParameter parameterClass = new SqlParameter(strParamVehicleClass, vehicle.VehicleClass)
+			{
+				SqlDbType = SqlDbType.NVarChar,
+				Direction = ParameterDirection.Input
+			};
+			var strParamVehicleSeating = StoredProcedureConstants.Vehicle_VehicleSeating_Parameter;
+			SqlParameter parameterSeating = new SqlParameter(strParamVehicleSeating, vehicle.VehicleSeating)
 			{
 				SqlDbType = SqlDbType.NVarChar,
 				Direction = ParameterDirection.Input
@@ -58,19 +64,7 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 			{
 				SqlDbType = SqlDbType.NVarChar,
 				Direction = ParameterDirection.Input
-			};
-			var strParamCapacity = StoredProcedureConstants.Vehicle_Capacity_Parameter;
-			SqlParameter parameterVehicleCapcity = new SqlParameter(strParamCapacity, vehicle.Capacity)
-			{
-				SqlDbType = SqlDbType.Int,
-				Direction = ParameterDirection.Input
-			};
-			var strParamAmenities = StoredProcedureConstants.Vehicle_Amenities_Parameter;
-			SqlParameter parameterAmenities = new SqlParameter(strParamAmenities, vehicle.Amenities)
-			{
-				SqlDbType = SqlDbType.NVarChar,
-				Direction = ParameterDirection.Input
-			};
+			};		
 			var strParamStatusId = StoredProcedureConstants.Vehicle_Status_Parameter;
 			SqlParameter parameterStatus = new SqlParameter(strParamStatusId, vehicle.Status)
 			{
@@ -83,15 +77,14 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 
 			paramList.Add(parameterVehicleId);
 			paramList.Add(parameterName);
-			paramList.Add(parameterType);
+			paramList.Add(parameterClass);
+			paramList.Add(parameterSeating);
 			paramList.Add(parameterOwner);
-			paramList.Add(parameterYear);
-			paramList.Add(parameterVehicleCapcity);
-			paramList.Add(parameterAmenities);
+			paramList.Add(parameterYear);		
 			paramList.Add(parameterStatus);
 			paramList.Add(parameterLoggedUser);
 			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.Vehicle_Insert_Vehicle, string.Join(",", strParamVehicleId, strParamName,
-				strParamType, strParamOwner, strParamYear, strParamCapacity, strParamAmenities, strParamStatusId, strloggedUser), paramList, cancellationToken);
+				strParamVehicleClass, strParamVehicleSeating, strParamOwner, strParamYear, strParamStatusId, strloggedUser), paramList, cancellationToken);
 		}
 
 		/// <summary>

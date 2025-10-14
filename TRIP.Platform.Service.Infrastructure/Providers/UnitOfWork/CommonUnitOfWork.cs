@@ -12,12 +12,14 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.UnitOfWork
 		public IUserRepository UserRepository { get; }
 		public IVehicleRepository VehicleRepository { get; }
 		public IDriverRepository DriverRepository { get; }
+		public ITripRepository TripRepository { get; }
 		public CommonUnitOfWork(TripDbContext dbContext)
 		{
 			_context = dbContext;
 			UserRepository = new UserRepository(_context);
 			VehicleRepository = new VehicleRepository(_context);
 			DriverRepository = new DriverRepository(_context);
+			TripRepository = new TripRepository(_context);
 		}
 		private bool disposedValue = false; // To detect redundant calls
 		protected virtual void Dispose(bool disposing)
