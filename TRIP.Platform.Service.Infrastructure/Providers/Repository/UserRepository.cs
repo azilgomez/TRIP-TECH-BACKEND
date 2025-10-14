@@ -71,8 +71,20 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 				SqlDbType = SqlDbType.Int,
 				Direction = ParameterDirection.Input
 			};
+			var strParamCompanyName = StoredProcedureConstants.User_CompanyName_Parameter;
+			SqlParameter parameterCompanyName = new SqlParameter(strParamCompanyName, user.CompanyName)
+			{
+				SqlDbType = SqlDbType.NVarChar,
+				Direction = ParameterDirection.Input
+			};
 			var strParamName = StoredProcedureConstants.User_Name_Parameter;
 			SqlParameter parameterName = new SqlParameter(strParamName, user.Name)
+			{
+				SqlDbType = SqlDbType.NVarChar,
+				Direction = ParameterDirection.Input
+			};
+			var strParamWebsite = StoredProcedureConstants.User_Website_Parameter;
+			SqlParameter parameterWebsite = new SqlParameter(strParamWebsite, user.Website)
 			{
 				SqlDbType = SqlDbType.NVarChar,
 				Direction = ParameterDirection.Input
@@ -95,6 +107,12 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 				SqlDbType = SqlDbType.NVarChar,
 				Direction = ParameterDirection.Input
 			};
+			var strParamAddress = StoredProcedureConstants.User_Address_Parameter;
+			SqlParameter parameterAddress = new SqlParameter(strParamAddress, user.Address)
+			{
+				SqlDbType = SqlDbType.NVarChar,
+				Direction = ParameterDirection.Input
+			};
 			var strParamUserTypeId = StoredProcedureConstants.User_UserTypeId_Parameter;
 			SqlParameter parameterUserType = new SqlParameter(strParamUserTypeId, user.UserTypeId)
 			{
@@ -106,14 +124,17 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 			SqlParameter parameterLoggedUser = new SqlParameter(StoredProcedureConstants.User_LoggedUser_Parameter, loggedUser);
 
 			paramList.Add(parameterLoggedUser);
+			paramList.Add(parameterCompanyName);
 			paramList.Add(parameterName);
+			paramList.Add(parameterWebsite);
 			paramList.Add(parameterUser);
 			paramList.Add(parameterEmail);
 			paramList.Add(parameterPassword);
 			paramList.Add(parameterContactNumber);
+			paramList.Add(parameterAddress);
 			paramList.Add(parameterUserType);
-			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.User_Insert_User, string.Join(",", strParamUser, strParamName,
-				strParamEmail, strParamPassword, strParamContactNumber, strParamUserTypeId, strloggedUser), paramList, cancellationToken);
+			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.User_Insert_User, string.Join(",", strParamUser, strParamCompanyName, strParamWebsite, strParamName,
+				strParamEmail, strParamPassword, strParamContactNumber, strParamAddress, strParamUserTypeId, strloggedUser), paramList, cancellationToken);
 		}
 	}
 }

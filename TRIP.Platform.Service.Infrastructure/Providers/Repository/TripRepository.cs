@@ -18,6 +18,21 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 			_context = dbContext;
 		}
 
+		public Task<bool> DeleteTrip(int tripId, string loggedUser, CancellationToken cancellationToken)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public Task<Trip> GetTripById(int tripId, string loggedUser, CancellationToken cancellationToken)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public Task<IEnumerable<Trip>> GetTrips(string loggedUser, CancellationToken cancellationToken)
+		{
+			throw new System.NotImplementedException();
+		}
+
 		/// <summary>
 		/// Method to save trip details
 		/// </summary>

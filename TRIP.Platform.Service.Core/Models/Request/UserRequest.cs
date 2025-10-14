@@ -7,7 +7,10 @@ namespace TRIP.Platform.Service.Core.Models.Request
 	{
 		[Range(0, int.MaxValue)]
 		public int? UserId { get; set; }
-
+		[StringLength(250, MinimumLength = 1)]
+		public string CompanyName { get; set; }
+		[StringLength(250, MinimumLength = 1)]
+		public string Website { get; set; }
 		[StringLength(250, MinimumLength = 1)]
 		public string Name { get; set; }
 		[StringLength(250, MinimumLength = 1)]
@@ -18,6 +21,8 @@ namespace TRIP.Platform.Service.Core.Models.Request
 
 		[StringLength(250, MinimumLength = 1)]
 		public string ContactNumber { get; set; }
+		[StringLength(400, MinimumLength = 1)]
+		public string Address { get; set; }
 		[Range(0, int.MaxValue)]
 		public int UserTypeId { get; set; }
 	}

@@ -6,6 +6,9 @@
 		public const string Users_GetLoggedInUser = "usp_GetLoggedInUserDetails";
 		public const string User_Insert_User = "usp_InsertUpdateUser";
 		public const string User_UserId_Parameter = "@UserId";
+		public const string User_CompanyName_Parameter = "@CompanyName";
+		public const string User_Website_Parameter = "@Website";
+		public const string User_Address_Parameter = "@Address";
 		public const string User_Name_Parameter = "@Name";
 		public const string User_Email_Parameter = "@Email";
 		public const string User_Password_Parameter = "@Password";
@@ -47,7 +50,7 @@
 		#endregion
 		#region Trip
 		public const string Trip_SP_TripAdd_AllParam = "@Trip,@TripVehicle,@LoggedUser";
-        public const string Trip_Insert_Trip = "usp_InsertUpdateTrip";
+		public const string Trip_Insert_Trip = "usp_InsertUpdateTrip";
 		public const string Trip_SP_Save_Param = "@Trip";
 		public const string Trip_SP_Save_Table_Type = "TripTableType";
 		public const string TripVehicle_SP_Save_Param = "@TripVehicle";

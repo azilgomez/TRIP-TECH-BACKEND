@@ -70,8 +70,8 @@ namespace TRIP.Platform.Service.Core.Services
 		/// <returns></returns>
 		public async Task<IEnumerable<VehicleResponse>> GetVehicles(string loggedUser, CancellationToken cancellationToken)
 		{
-			var users = await this._commonUnitofWork.VehicleRepository.GetVehicles(loggedUser, cancellationToken);
-			var result = this._mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleResponse>>(users);
+			var vehicles = await this._commonUnitofWork.VehicleRepository.GetVehicles(loggedUser, cancellationToken);
+			var result = this._mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleResponse>>(vehicles);
 			return result;
 		}
 
