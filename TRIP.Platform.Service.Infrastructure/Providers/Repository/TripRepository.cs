@@ -19,11 +19,34 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 			_context = dbContext;
 		}
 
-		public Task<bool> DeleteTrip(int tripId, string loggedUser, CancellationToken cancellationToken)
+		/// <summary>
+		/// Method to delete trip
+		/// </summary>
+		/// <param name="tripId"></param>
+		/// <param name="loggedUser"></param>
+		/// <param name="cancellationToken"></param>
+		/// <returns></returns>
+		public async Task<bool> DeleteTrip(int tripId, string loggedUser, CancellationToken cancellationToken)
 		{
-			throw new System.NotImplementedException();
+			List<SqlParameter> paramList = new List<SqlParameter>();
+
+			var strParamTripId = StoredProcedureConstants.Trip_TripId_Parameter;
+			SqlParameter parameterTripId = new SqlParameter(strParamTripId, tripId)
+			{
+				SqlDbType = SqlDbType.Int,
+				Direction = ParameterDirection.Input
+			};
+			paramList.Add(parameterTripId);
+			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.Trip_Delete, string.Join(",", strParamTripId), paramList, cancellationToken);
 		}
 
+		/// <summary>
+		/// Method to get trip by Id
+		/// </summary>
+		/// <param name="tripId"></param>
+		/// <param name="loggedUser"></param>
+		/// <param name="cancellationToken"></param>
+		/// <returns></returns>
 		public async Task<TripDetail> GetTripById(int tripId, string loggedUser, CancellationToken cancellationToken)
 		{
 			var strParamTripId = StoredProcedureConstants.Trip_TripId_Parameter;
