@@ -10,7 +10,7 @@ namespace TRIP.Platform.Service.Infrastructure.DBContext
 		public DbSet<User> User { get; set; }
 		public DbSet<Vehicle> Vehicle { get; set; }
 		public DbSet<Driver> Driver { get; set; }
-		public DbSet<Trip> Trip { get; set; }
+		public DbSet<TripDetail> Trip { get; set; }
 		public DbSet<Vendor> Vendor { get; set; }
 	}
 }

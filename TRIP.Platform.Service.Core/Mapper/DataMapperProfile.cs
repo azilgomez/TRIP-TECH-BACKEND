@@ -20,7 +20,9 @@ namespace TRIP.Platform.Service.Core.Mapper
 			this.CreateMap(typeof(Driver), typeof(DriverResponse));
 			this.CreateMap(typeof(DriverRequest), typeof(Driver));
 			this.CreateMap(typeof(TripRequest), typeof(Trip));
-			this.CreateMap(typeof(Trip), typeof(TripResponse));
+			this.CreateMap(typeof(TripDetailRequest), typeof(TripDetail));
+			this.CreateMap(typeof(TripVehicleRequest), typeof(TripVehicle));
+			this.CreateMap(typeof(TripDetail), typeof(TripResponse));
 			this.CreateMap(typeof(Vendor), typeof(VendorResponse));
 			this.CreateMap(typeof(VendorRequest), typeof(Vendor));
 		}

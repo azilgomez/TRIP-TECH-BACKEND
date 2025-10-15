@@ -17,8 +17,8 @@ namespace TRIP.Platform.Service.Core.Entities
 		public int? TripInCharge { get; set; }
 		public string TripRemarks { get; set; }
 		public string VendorRemarks { get; set; }
-		public string DriverName { get; set; }
-		public string DriverContactNumber { get; set; }
+		public int DriverId { get; set; }
+		public string ContactNumber { get; set; }
 		public decimal? AdhocCost { get; set; }
 		public decimal? VehicleCost { get; set; }
 	}

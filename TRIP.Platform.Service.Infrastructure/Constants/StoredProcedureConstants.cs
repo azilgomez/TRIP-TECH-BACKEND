@@ -64,7 +64,11 @@
 		#endregion
 		#region Trip
 		public const string Trip_SP_TripAdd_AllParam = "@Trip,@TripVehicle,@LoggedUser";
+		public const string Trip_TripId_Parameter = "@TripId";
 		public const string Trip_Insert_Trip = "usp_InsertUpdateTrip";
+		public const string Trip_GetAll = "usp_GetTrips";
+		public const string Trip_Get = "usp_GetTripById";
+		public const string Trip_Vehicle_Get = "usp_GetTripVehicleById";
 		public const string Trip_SP_Save_Param = "@Trip";
 		public const string Trip_SP_Save_Table_Type = "TripTableType";
 		public const string TripVehicle_SP_Save_Param = "@TripVehicle";

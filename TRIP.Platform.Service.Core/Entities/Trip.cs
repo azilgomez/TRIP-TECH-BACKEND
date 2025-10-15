@@ -8,6 +8,6 @@ namespace TRIP.Platform.Service.Core.Entities
 	public class Trip : EntityBase
 	{
 		public IEnumerable<TripDetail> Trips { get; set; }
-		public IEnumerable<TripVehicleRequest> Vehicles { get; set; }
+		public IEnumerable<TripVehicle> Vehicles { get; set; }
 	}
 }
