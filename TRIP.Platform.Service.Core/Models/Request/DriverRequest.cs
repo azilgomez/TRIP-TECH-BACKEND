@@ -26,6 +26,8 @@ namespace TRIP.Platform.Service.Core.Models.Request
 		public string ContactNumber { get; set; }
 		[StringLength(250, MinimumLength = 1)]
 		public string Experience { get; set; }
-		public bool Status { get; set; }
+
+		[Range(0, int.MaxValue)]
+		public int? VendorId { get; set; }
 	}
 }

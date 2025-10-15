@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using EY.CTP.SRED.Platform.Service.Core.Entities;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading;
@@ -19,103 +20,7 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 		}
 
 		/// <summary>
-		/// Method to save Trip details
-		/// </summary>
-		/// <param name="trip"></param>
-		/// <param name="loggedUser"></param>
-		/// <param name="cancellationToken"></param>
-		/// <returns></returns>
-		public async Task<bool> SaveTrip(Trip trip, string loggedUser, CancellationToken cancellationToken)
-		{
-			List<SqlParameter> paramList = new List<SqlParameter>();
-
-			var strParamTripId = StoredProcedureConstants.Trip_TripId_Parameter;
-			SqlParameter parameterTripId = new SqlParameter(strParamTripId, trip.TripId)
-			{
-				SqlDbType = SqlDbType.Int,
-				Direction = ParameterDirection.Input
-			};
-			var strParamTripOwner = StoredProcedureConstants.Trip_TripOwner_Parameter;
-			SqlParameter parameterOwner = new SqlParameter(strParamTripOwner, trip.TripOwner)
-			{
-				SqlDbType = SqlDbType.NVarChar,
-				Direction = ParameterDirection.Input
-			};
-			var strParamTripType = StoredProcedureConstants.Trip_TripType_Parameter;
-			SqlParameter parameterType = new SqlParameter(strParamTripType, trip.TripType)
-			{
-				SqlDbType = SqlDbType.NVarChar,
-				Direction = ParameterDirection.Input
-			};
-			var strParamTripDate = StoredProcedureConstants.Trip_TripDate_Parameter;
-			SqlParameter parameterTripDate = new SqlParameter(strParamTripDate, trip.TripRequestedDate)
-			{
-				SqlDbType = SqlDbType.DateTime,
-				Direction = ParameterDirection.Input
-			};
-			var strParamStartPlace = StoredProcedureConstants.Trip_StartPlace_Parameter;
-			SqlParameter parameterStartPlace = new SqlParameter(strParamStartPlace, trip.StartPlace)
-			{
-				SqlDbType = SqlDbType.NVarChar,
-				Direction = ParameterDirection.Input
-			};
-			var strParamEndPlace = StoredProcedureConstants.Trip_EndPlace_Parameter;
-			SqlParameter parameterEndPlace = new SqlParameter(strParamEndPlace, trip.EndPlace)
-			{
-				SqlDbType = SqlDbType.NVarChar,
-				Direction = ParameterDirection.Input
-			};
-			var strParamStartDate = StoredProcedureConstants.Trip_StartDate_Parameter;
-			SqlParameter parameterStartDate = new SqlParameter(strParamStartDate, trip.StartDate)
-			{
-				SqlDbType = SqlDbType.DateTime,
-				Direction = ParameterDirection.Input
-			};
-			var strParamRemark = StoredProcedureConstants.Trip_Remarks_Parameter;
-			SqlParameter parameterRemark = new SqlParameter(strParamRemark, trip.TripRemarks)
-			{
-				SqlDbType = SqlDbType.NVarChar,
-				Direction = ParameterDirection.Input
-			};
-			var strParamAssignTo = StoredProcedureConstants.Trip_AssignTo_Parameter;
-			SqlParameter parameterAssignTo = new SqlParameter(strParamAssignTo, trip.AssignTo)
-			{
-				SqlDbType = SqlDbType.Int,
-				Direction = ParameterDirection.Input
-			};
-			var strParamInCharge = StoredProcedureConstants.Trip_InCharge_Parameter;
-			SqlParameter parameterInCharge = new SqlParameter(strParamInCharge, trip.InChargePerson)
-			{
-				SqlDbType = SqlDbType.Int,
-				Direction = ParameterDirection.Input
-			};
-			var strParamStatusId = StoredProcedureConstants.Trip_Status_Parameter;
-			SqlParameter parameterStatus = new SqlParameter(strParamStatusId, trip.Status)
-			{
-				SqlDbType = SqlDbType.Int,
-				Direction = ParameterDirection.Input
-			};
-
-			var strloggedUser = StoredProcedureConstants.User_LoggedUser_Parameter;
-			SqlParameter parameterLoggedUser = new SqlParameter(StoredProcedureConstants.User_LoggedUser_Parameter, loggedUser);
-
-			paramList.Add(parameterTripId);
-			paramList.Add(parameterOwner);
-			paramList.Add(parameterType);
-			paramList.Add(parameterStartPlace);
-			paramList.Add(parameterEndPlace);
-			paramList.Add(parameterStartDate);
-			paramList.Add(parameterAssignTo);
-			paramList.Add(parameterInCharge);
-			paramList.Add(parameterRemark);
-			paramList.Add(parameterStatus);
-			paramList.Add(parameterLoggedUser);
-			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.Trip_Insert_Trip, string.Join(",", strParamTripId, strParamTripType, strParamTripDate,
-				strParamStartPlace, strParamEndPlace, strParamStartDate, strParamAssignTo,strParamInCharge, strParamStatusId, strParamStatusId,strParamRemark, strloggedUser), paramList, cancellationToken);
-		}
-
-		/// <summary>
-		///  Method to delete trip
+		/// Method to delete trip
 		/// </summary>
 		/// <param name="tripId"></param>
 		/// <param name="loggedUser"></param>
@@ -132,38 +37,88 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 				Direction = ParameterDirection.Input
 			};
 			paramList.Add(parameterTripId);
-			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.Trip_Delete_Trip, string.Join(",", strParamTripId), paramList, cancellationToken);
+			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.Trip_Delete, string.Join(",", strParamTripId), paramList, cancellationToken);
 		}
 
 		/// <summary>
-		/// Method to get trips
-		/// </summary>
-		/// <param name="loggedUser"></param>
-		/// <param name="cancellationToken"></param>
-		/// <returns></returns>
-		public async Task<IEnumerable<Trip>> GetTrips(string loggedUser, CancellationToken cancellationToken)
-		{
-			return await this.ExecuteQueryForOtherEntities<Trip>(SchemeNames.Common, StoredProcedureConstants.Trips_GetAll, cancellationToken);
-		}
-
-		/// <summary>
-		/// Method to get Trip by Id
+		/// Method to get trip by Id
 		/// </summary>
 		/// <param name="tripId"></param>
 		/// <param name="loggedUser"></param>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public async Task<Trip> GetTripById(int tripId, string loggedUser, CancellationToken cancellationToken)
+		public async Task<TripDetail> GetTripById(int tripId, string loggedUser, CancellationToken cancellationToken)
 		{
 			var strParamTripId = StoredProcedureConstants.Trip_TripId_Parameter;
 			SqlParameter parameterTripId = new SqlParameter(strParamTripId, tripId)
 			{
-				SqlDbType = SqlDbType.NVarChar,
+				SqlDbType = SqlDbType.Int,
 				Direction = ParameterDirection.Input
 			};
 
 			List<SqlParameter> paramList = new List<SqlParameter>() { parameterTripId };
-			return await this.ExecuteQueryForOtherEntity<Trip>(SchemeNames.Common, StoredProcedureConstants.Trips_Get, string.Join(",", strParamTripId), paramList, cancellationToken);
+			return await this.ExecuteQueryForOtherEntity<TripDetail>(SchemeNames.Common, StoredProcedureConstants.Trip_Get, string.Join(",", strParamTripId), paramList, cancellationToken);
+		}
+
+		/// <summary>
+		/// Method to get trip vehicle
+		/// </summary>
+		/// <param name="tripId"></param>
+		/// <param name="loggedUser"></param>
+		/// <param name="cancellationToken"></param>
+		/// <returns></returns>
+		public async Task<IEnumerable<TripVehicle>> GetTripVehiclesById(int tripId, string loggedUser, CancellationToken cancellationToken)
+		{
+			var strParamTripId = StoredProcedureConstants.Trip_TripId_Parameter;
+			SqlParameter parameterTripId = new SqlParameter(strParamTripId, tripId)
+			{
+				SqlDbType = SqlDbType.Int,
+				Direction = ParameterDirection.Input
+			};
+
+			List<SqlParameter> paramList = new List<SqlParameter>() { parameterTripId };
+			return await this.ExecuteQueryForOtherEntities<TripVehicle>(SchemeNames.Common, StoredProcedureConstants.Trip_Vehicle_Get, string.Join(",", strParamTripId), paramList, cancellationToken);
+		}
+
+		/// <summary>
+		/// Method to get all trips
+		/// </summary>
+		/// <param name="loggedUser"></param>
+		/// <param name="cancellationToken"></param>
+		/// <returns></returns>
+		public async Task<IEnumerable<TripDetail>> GetTrips(string loggedUser, CancellationToken cancellationToken)
+		{
+			return await this.ExecuteQueryForOtherEntities<TripDetail>(SchemeNames.Common, StoredProcedureConstants.Trip_GetAll, cancellationToken);
+		}
+
+		/// <summary>
+		/// Method to save trip details
+		/// </summary>
+		/// <param name="trip"></param>
+		/// <param name="loggedUser"></param>
+		/// <param name="cancellationToken"></param>
+		/// <returns></returns>
+		public async Task<int> SaveTrip(Trip trip, string loggedUser, CancellationToken cancellationToken)
+		{
+			var sqlParams = new List<SqlParameter>
+			{
+				await this.BuildTableParameter(new StoredProcParam(){
+					PARAMETER_NAME = StoredProcedureConstants.Trip_SP_Save_Param,
+					USER_DEFINED_TYPE_SCHEMA = SchemeNames.Common,
+					USER_DEFINED_TYPE_NAME = StoredProcedureConstants.Trip_SP_Save_Table_Type,
+					PARAMETER_MODE = StoredProcedureConstants.StoredProcedure_Parameter_Mode_In},
+					trip.Trips),
+				await this.BuildTableParameter(new StoredProcParam(){
+					PARAMETER_NAME = StoredProcedureConstants.TripVehicle_SP_Save_Param,
+					USER_DEFINED_TYPE_SCHEMA = SchemeNames.Common,
+					USER_DEFINED_TYPE_NAME = StoredProcedureConstants.Trip_SP_Save_VehicleTable_Type,
+					PARAMETER_MODE = StoredProcedureConstants.StoredProcedure_Parameter_Mode_In},
+					trip.Vehicles),
+				new SqlParameter(StoredProcedureConstants.User_LoggedUser_Parameter, loggedUser),
+			};
+			var strParam = StoredProcedureConstants.Trip_SP_TripAdd_AllParam;
+
+			return await this.ExecuteNonQueryWithIntOutput(SchemeNames.Common, StoredProcedureConstants.Trip_Insert_Trip, strParam, sqlParams, cancellationToken);
 		}
 	}
 }

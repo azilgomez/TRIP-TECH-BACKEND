@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace TRIP.Platform.Service.Core.Models.Response
+namespace TRIP.Platform.Service.Core.Models.Request
 {
-	public class TripResponse
+	public class TripDetailRequest
 	{
-		[Key]
 		public int? TripId { get; set; }
 		public string TripOwner { get; set; }
 		public int? TripType { get; set; }
@@ -17,7 +15,7 @@ namespace TRIP.Platform.Service.Core.Models.Response
 		public int? TripInCharge { get; set; }
 		public string TripRemarks { get; set; }
 		public string VendorRemarks { get; set; }
-		public string DriverId { get; set; }
+		public int DriverId { get; set; }
 		public string ContactNumber { get; set; }
 		public decimal? AdhocCost { get; set; }
 		public decimal? VehicleCost { get; set; }

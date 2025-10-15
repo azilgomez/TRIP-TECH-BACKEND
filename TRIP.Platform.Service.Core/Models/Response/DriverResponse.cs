@@ -13,6 +13,6 @@ namespace TRIP.Platform.Service.Core.Models.Response
 		public string LicenseNumber { get; set; }
 		public string ContactNumber { get; set; }
 		public string Experience { get; set; }
-		public bool Status { get; set; }
+		public int VendorId { get; set; }
 	}
 }

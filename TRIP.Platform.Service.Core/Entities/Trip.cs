@@ -1,19 +1,13 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using TRIP.Platform.Service.Core.Models.Request;
 
 namespace TRIP.Platform.Service.Core.Entities
 {
-	public class Trip
+	[Keyless]
+	public class Trip : EntityBase
 	{
-		public int? TripId { get; set; }
-		public string TripOwner { get; set; }
-		public string TripType { get; set; }
-		public DateTime? TripRequestedDate { get; set; }
-		public DateTime? StartDate { get; set; }
-		public string StartPlace { get; set; }
-		public string EndPlace { get; set; }
-		public int? AssignTo { get; set; }
-		public int? InChargePerson { get; set; }
-		public string TripRemarks { get; set; }
-		public int Status { get; set; }
+		public IEnumerable<TripDetail> Trips { get; set; }
+		public IEnumerable<TripVehicle> Vehicles { get; set; }
 	}
 }

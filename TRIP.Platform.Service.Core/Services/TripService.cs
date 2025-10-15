@@ -40,7 +40,7 @@ namespace TRIP.Platform.Service.Core.Services
 			var result = await _commonUnitofWork.TripRepository.SaveTrip(addedTrip, loggedUser, cancellationToken);
 			Response<bool> validation = new Response<bool>
 			{
-				IsSuccess = result
+				IsSuccess = result > 0
 			};
 			return validation;
 		}
@@ -71,7 +71,7 @@ namespace TRIP.Platform.Service.Core.Services
 		public async Task<IEnumerable<TripResponse>> GetTrips(string loggedUser, CancellationToken cancellationToken)
 		{
 			var trips = await this._commonUnitofWork.TripRepository.GetTrips(loggedUser, cancellationToken);
-			var result = this._mapper.Map<IEnumerable<Trip>, IEnumerable<TripResponse>>(trips);
+			var result = this._mapper.Map<IEnumerable<TripDetail>, IEnumerable<TripResponse>>(trips);
 			return result;
 		}
 
@@ -85,7 +85,7 @@ namespace TRIP.Platform.Service.Core.Services
 		public async Task<TripResponse> GetTripById(int tripId, string loggedUser, CancellationToken cancellationToken)
 		{
 			var trip = await this._commonUnitofWork.TripRepository.GetTripById(tripId, loggedUser, cancellationToken);
-			var result = this._mapper.Map<Trip, TripResponse>(trip);
+			var result = this._mapper.Map<TripDetail, TripResponse>(trip);
 			return result;
 		}
 	}
