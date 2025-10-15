@@ -17,6 +17,7 @@ namespace TRIP.Platform.Service.API
 			builder.RegisterType<VehicleService>().As<IVehicleService>().InstancePerLifetimeScope();
 			builder.RegisterType<TripService>().As<ITripService>().InstancePerLifetimeScope();
 			builder.RegisterType<DriverService>().As<IDriverService>().InstancePerLifetimeScope();
+			builder.RegisterType<VendorService>().As<IVendorService>().InstancePerLifetimeScope();
 			builder.RegisterType<CommonUnitOfWork>().As<ICommonUnitofWork>().InstancePerLifetimeScope();
 			builder.Register((x) => new CommonUnitOfWork(x.Resolve<TripDbContext>()));
 			base.Load(builder);

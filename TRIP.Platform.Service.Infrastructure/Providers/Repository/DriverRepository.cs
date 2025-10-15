@@ -78,10 +78,10 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 				SqlDbType = SqlDbType.NVarChar,
 				Direction = ParameterDirection.Input
 			};
-			var strParamStatus = StoredProcedureConstants.Driver_Status_Parameter;
-			SqlParameter parameterStatus = new SqlParameter(strParamStatus, driver.Status)
+			var strParamVendorId = StoredProcedureConstants.Vendor_VendorId_Parameter;
+			SqlParameter parameterVendorId = new SqlParameter(strParamVendorId, driver.VendorId)
 			{
-				SqlDbType = SqlDbType.Bit,
+				SqlDbType = SqlDbType.Int,
 				Direction = ParameterDirection.Input
 			};
 			var strloggedUser = StoredProcedureConstants.User_LoggedUser_Parameter;
@@ -95,10 +95,10 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 			paramList.Add(parameterExperience);
 			paramList.Add(parameterLicense);
 			paramList.Add(parameterContactNumber);
-			paramList.Add(parameterStatus);
+			paramList.Add(parameterVendorId);
 			paramList.Add(parameterLoggedUser);
 			return await this.ExecuteNonQuery(SchemeNames.Common, StoredProcedureConstants.Driver_Insert_Driver, string.Join(",", strParamDriverId, strParamType, strParamName,
-				strParamLanguage, strParamLocation, strParamExperience, strParamLicense, strParamContactNumber, strParamStatus, strloggedUser), paramList, cancellationToken);
+				strParamLanguage, strParamLocation, strParamExperience, strParamLicense, strParamContactNumber, strParamVendorId, strloggedUser), paramList, cancellationToken);
 		}
 
 		/// <summary>
@@ -145,7 +145,7 @@ namespace TRIP.Platform.Service.Infrastructure.Providers.Repository
 			var strParamDriverId = StoredProcedureConstants.Driver_DriverId_Parameter;
 			SqlParameter parameterDriverId = new SqlParameter(strParamDriverId, driverId)
 			{
-				SqlDbType = SqlDbType.NVarChar,
+				SqlDbType = SqlDbType.Int,
 				Direction = ParameterDirection.Input
 			};
 

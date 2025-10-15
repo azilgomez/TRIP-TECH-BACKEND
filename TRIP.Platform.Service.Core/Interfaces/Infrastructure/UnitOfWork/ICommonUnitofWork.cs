@@ -9,5 +9,6 @@ namespace TRIP.Platform.Service.Core.Interfaces.Infrastructure.UnitOfWork
 		IVehicleRepository VehicleRepository { get; }
 		IDriverRepository DriverRepository { get; }
 		ITripRepository TripRepository { get; }
+		IVendorRepository VendorRepository { get; }
 	}
 }

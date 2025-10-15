@@ -10,7 +10,7 @@ using TRIP.Platform.Service.Core.Models.Response;
 
 namespace TRIP.Platform.Service.API.Controllers
 {
-	public class DriverController :BaseController
+	public class DriverController : BaseController
 	{
 		IWebHostEnvironment _hostingEnvironment;
 		public DriverController(IMediator mediator, IHttpContextAccessor _httpContextAccessor, IWebHostEnvironment environment) : base(mediator, _httpContextAccessor)

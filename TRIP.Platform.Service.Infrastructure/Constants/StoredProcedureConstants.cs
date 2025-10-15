@@ -48,6 +48,20 @@
 		public const string Drivers_GetAll = "usp_GetDrivers";
 		public const string Driver_Delete_Driver = "usp_DeleteDriver";
 		#endregion
+		#region Vendor
+		public const string Vendor_VendorId_Parameter = "@VendorId";
+		public const string Vendor_VendorName_Parameter = "@VendorName";
+		public const string Vendor_CompanyName_Parameter = "@CompanyName";
+		public const string Vendor_Address_Parameter = "@Address";
+		public const string Vendor_Email_Parameter = "@Email";
+		public const string Vendor_MobileNumber_Parameter = "@MobileNumber";
+		public const string Vendor_Type_Parameter = "@Type";
+		public const string Vendor_IsActive_Parameter = "@IsActive";
+		public const string Vendor_Insert_Vendor = "usp_InsertUpdateVendor";
+		public const string Vendors_Get = "usp_GetVendorById";
+		public const string Vendors_GetAll = "usp_GetVendors";
+		public const string Vendors_Delete_Vendor = "usp_DeleteVendor";
+		#endregion
 		#region Trip
 		public const string Trip_SP_TripAdd_AllParam = "@Trip,@TripVehicle,@LoggedUser";
 		public const string Trip_Insert_Trip = "usp_InsertUpdateTrip";
